@@ -40,7 +40,7 @@ proc part2*(input: string): auto =
   return score
 
 
-const date = (2021, 1)
+const date* = (2021, 1)
 
 proc main() =
   let input = fetchInput(date)

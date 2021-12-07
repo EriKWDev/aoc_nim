@@ -20,7 +20,7 @@ func `$`*(res: Result): string =
     ms = milliseconds / res.times.float
     s = if res.times > 0: "s" else: ""
 
-  return &"{res.name:.<40}{ms:.3f} ms (Ran {res.times} time{s})"
+  return &"{res.name:.<30}{ms:.3f} ms (Ran {res.times} time{s})"
 
 
 proc measure*(part: proc(input: string): int|string, input, name: string): Result =
@@ -80,14 +80,14 @@ macro importSolutions() =
     for moduleName in moduleNames:
       let
         moduleIdent = ident(moduleName)
-        day = moduleName[^2..^1]
-        solutionName = &"{year}_{day}"
 
       mainProcContent.add quote do:
-        let input = fetchInput((parseInt(`year`), parseInt(`day`)))
+        let
+          input = fetchInput(`moduleIdent`.date)
+          name = dateToName(`moduleIdent`.date)
 
-        `resultsIdent`.add measure(`moduleIdent`.part1, input, `solutionName` & " part 1")
-        `resultsIdent`.add measure(`moduleIdent`.part2, input, `solutionName` & " part 2")
+        `resultsIdent`.add measure(`moduleIdent`.part1, input, name & " part 1")
+        `resultsIdent`.add measure(`moduleIdent`.part2, input, name & " part 2")
 
   result.add quote do:
     proc main() =

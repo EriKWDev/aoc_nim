@@ -27,7 +27,7 @@ proc part2*(input: string): auto =
 
   return -1
 
-const date = (2015, 1)
+const date* = (2015, 1)
 
 
 proc main() =

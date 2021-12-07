@@ -27,7 +27,7 @@ proc getSession(): string =
 
   return session
 
-func nameFromDate*(date: Date): string = &"{date.year}_{date.day:02}"
+func dateToName*(date: Date): string = &"{date.year}_{date.day:02}"
 
 proc ensureYearFolderExists(date: Date): string =
   let inputFolder = "input"
@@ -62,7 +62,7 @@ proc fetchCachedInput(date: Date): string =
   var sessionHash: Hash = 0
   sessionHash = sessionHash !& hash(getSession())
 
-  let inputFilename = joinPath(autoFolder, &"{nameFromDate(date)}_{!$sessionHash}.txt")
+  let inputFilename = joinPath(autoFolder, &"{dateToName(date)}_{!$sessionHash}.txt")
   if not fileExists(inputFilename):
     writeFile(inputFilename, "")
     return ""
@@ -94,7 +94,7 @@ proc writeInputToCache(date: Date, content: string) =
   var sessionHash: Hash = 0
   sessionHash = sessionHash !& hash(getSession())
 
-  let inputFilename = joinPath(autoFolder, &"{nameFromDate(date)}_{!$sessionHash}.txt")
+  let inputFilename = joinPath(autoFolder, &"{dateToName(date)}_{!$sessionHash}.txt")
   writeFile(inputFilename, content)
 
 proc fetchInput*(date: Date): string =

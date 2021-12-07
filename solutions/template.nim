@@ -36,7 +36,7 @@ proc part2*(input: string): auto =
   return ""
 
 
-const date = (2021, 7)
+const date* = (2021, 7)
 
 proc main() =
   let input = fetchInput(date)
