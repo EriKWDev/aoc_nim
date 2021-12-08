@@ -22,18 +22,6 @@ proc getData(input: string): auto =
 
     result.add((firstList, secondList))
 
-type
-  SegmentPosition = enum
-    spTop,
-    spTopLeft,
-    spTopRight,
-
-    spCenter,
-
-    spBottomLeft,
-    spBottomRight,
-    spBottom
-
 const segments = [
   6, # 0
   2, # 1
@@ -70,7 +58,7 @@ proc part2*(input: string): auto =
   let data = getData(input)
 
   const letters = "abcdefg"
-  var initialTable: Table[string, int] = {"acedgfb": 8, "cdfbe": 5, "gcdfa": 2, "fbcad": 3, "dab": 7,
+  const initialTable: Table[string, int] = {"acedgfb": 8, "cdfbe": 5, "gcdfa": 2, "fbcad": 3, "dab": 7,
          "cefabd": 9, "cdfgeb": 6, "eafb": 4, "cagedb": 0, "ab": 1}.toTable()
 
   var correctTable: Table[string, int]
@@ -125,7 +113,7 @@ proc part2*(input: string): auto =
 
 const date* = (2021, 8)
 
-proc main() =
+proc main*() =
   let input = fetchInput(date)
 
   if not runExamples1(date, part1): return

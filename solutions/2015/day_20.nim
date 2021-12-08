@@ -43,7 +43,7 @@ proc part2*(input: string): auto =
 
 const date* = (2015, 20)
 
-proc main() =
+proc main*() =
   let input = fetchInput(date)
 
   if not runExamples1(date, part1): return

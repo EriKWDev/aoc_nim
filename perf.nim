@@ -13,7 +13,6 @@ type
     times: int
     ms: float
 
-
 func `$`*(res: Result): string =
   let s = if res.times == 1: "" else: "s"
 
