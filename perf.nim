@@ -1,4 +1,4 @@
-import strformat, macros, os, strutils, std/monotimes, times, tables, aoc
+import strformat, macros, os, strutils, std/monotimes, times, tables, aoc, algorithm
 
 
 const
@@ -11,22 +11,21 @@ type
     name: string
     totalDuration: Duration
     times: int
+    ms: float
 
 
 func `$`*(res: Result): string =
-  let
-    nanoseconds = res.totalDuration.inNanoseconds()
-    milliseconds = nanoseconds.float / 1000000.0
-    ms = milliseconds / res.times.float
-    s = if res.times > 0: "s" else: ""
+  let s = if res.times == 1: "" else: "s"
 
-  return &"{res.name:.<30}{ms:.3f} ms (Ran {res.times} time{s})"
+  return &"{res.name:.<30}{res.ms:.3f} ms (Ran {res.times} time{s})"
 
 
 proc measure*(part: proc(input: string): int|string, input, name: string): Result =
   var
     totalDuration: Duration
     times = 0
+
+  echo &"Measuring {name}..."
 
   for i in 1 .. n:
     let startTime = getMonoTime()
@@ -39,7 +38,12 @@ proc measure*(part: proc(input: string): int|string, input, name: string): Resul
     if totalDuration > maxDuration:
       break
 
-  return (name, totalDuration, times)
+  let
+    nanoseconds = totalDuration.inNanoseconds()
+    milliseconds = nanoseconds.float / 1000000.0
+    ms = milliseconds / times.float
+
+  result = (name, totalDuration, times, ms)
 
 
 macro importSolutions() =
@@ -93,8 +97,15 @@ macro importSolutions() =
     proc main() =
       `mainProcContent`
 
+      echo "\nPerformance sorted by date and part"
       for result in `resultsIdent`:
         echo result
+
+      echo "\nPerformance sorted by speed"
+      let sortedResult = `resultsIdent`.sortedByIt(it.ms)
+      for result in sortedResult:
+        echo result
+
 
     when isMainModule:
       main()
