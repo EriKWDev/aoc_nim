@@ -1,5 +1,6 @@
 import aoc
 
+
 type Map = Table[tuple[x, y: int], int]
 
 proc getData(input: string): Map =
@@ -31,6 +32,7 @@ proc isLowPoint(map: Map, pos: tuple[x, y: int]): bool =
       result = false
       break
 
+
 proc part1*(input: string): int =
   let map = getData(input)
 
@@ -40,8 +42,6 @@ proc part1*(input: string): int =
     if map.isLowPoint(pos):
       result += map[pos] + 1
 
-
-import algorithm
 
 proc getBasinSize(map: Map, pos, prevpos: tuple[x, y: int], visitedPoints: var HashSet[tuple[x,
     y: int]]): int =
@@ -60,7 +60,6 @@ proc getBasinSize(map: Map, pos, prevpos: tuple[x, y: int], visitedPoints: var H
 
     if map[newPos] > value:
       result += getBasinSize(map, newPos, pos, visitedPoints)
-
 
 
 proc part2*(input: string): int =
