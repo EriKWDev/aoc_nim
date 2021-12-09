@@ -58,8 +58,8 @@ proc part2*(input: string): auto =
   let data = getData(input)
 
   const letters = "abcdefg"
-  const initialTable: Table[string, int] = {"acedgfb": 8, "cdfbe": 5, "gcdfa": 2, "fbcad": 3, "dab": 7,
-         "cefabd": 9, "cdfgeb": 6, "eafb": 4, "cagedb": 0, "ab": 1}.toTable()
+  const initialTable: Table[string, int] = {"acedgfb": 8, "cdfbe": 5, "gcdfa": 2, "fbcad": 3,
+      "dab": 7, "cefabd": 9, "cdfgeb": 6, "eafb": 4, "cagedb": 0, "ab": 1}.toTable()
 
   var correctTable: Table[string, int]
 
