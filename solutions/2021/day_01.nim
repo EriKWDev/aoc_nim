@@ -1,43 +1,34 @@
 import aoc
 
 
-proc getData(input: string): auto =
+proc getData(input: string): seq[int] =
   let numbersPattern = re"(?m)(-?\d+)"
   return input.findAll(numbersPattern).mapIt(parseInt(it.group(0, input)[0]))
 
 
-proc part1*(input: string): auto =
+proc part1*(input: string): int =
   let numbers = getData(input)
 
-  var
-    score = 0
-    previous = -1
+  var previous = -1
 
   for number in numbers:
     if previous != -1 and number > previous:
-      inc score
+      inc result
     previous = number
 
 
-  return score
-
-
-proc part2*(input: string): auto =
+proc part2*(input: string): int =
   let numbers = getData(input)
 
-  var
-    score = 0
-    previous = -1
+  var previous = -1
 
   for i in 2 .. high(numbers):
     let value = sum(numbers[(i-2) .. i])
 
     if previous != -1 and value > previous:
-      inc score
+      inc result
 
     previous = value
-
-  return score
 
 
 const date* = (2021, 1)

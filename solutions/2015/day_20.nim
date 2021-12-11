@@ -1,11 +1,10 @@
 import aoc
 
 
-proc getData(input: string): auto =
-  return parseInt(input)
+func getData(input: string): int = parseInt(input)
 
 
-proc part1*(input: string): auto =
+proc part1*(input: string): int =
   const m = 10
 
   let
@@ -18,12 +17,10 @@ proc part1*(input: string): auto =
       counts[j * i - 1] += i * m
 
     if counts[i - 1] >= number:
-      return $i
-
-  return ""
+      return i
 
 
-proc part2*(input: string): auto =
+proc part2*(input: string): int =
   const m = 11
 
   let
@@ -36,9 +33,7 @@ proc part2*(input: string): auto =
       counts[j * i - 1] += i * m
 
     if counts[i - 1] >= number:
-      return $i
-
-  return ""
+      return i
 
 
 const date* = (2015, 20)

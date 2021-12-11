@@ -1,34 +1,26 @@
 import aoc
 
 
-proc part1*(input: string): auto =
-  var score = 0
-
+proc part1*(input: string): int =
   for value in input:
     if value == '(':
-      inc score
+      inc result
     else:
-      dec score
-
-  return score
+      dec result
 
 
-proc part2*(input: string): auto =
-  var score = 0
-
+proc part2*(input: string): int =
   for i, value in input:
     if value == '(':
-      inc score
+      inc result
     else:
-      dec score
+      dec result
 
-    if score < 0:
+    if result < 0:
       return i + 1
 
-  return -1
 
 const date* = (2015, 1)
-
 
 proc main*() =
   let input = fetchInput(date)

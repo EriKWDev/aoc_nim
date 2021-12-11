@@ -1,4 +1,4 @@
-import strformat, macros, os, strutils, std/monotimes, times, tables, aoc, algorithm, json
+import strformat, macros, os, strutils, std/monotimes, times, tables, aoc, algorithm, json, hashes
 
 
 const
@@ -14,6 +14,7 @@ type
     times: int
     ms: float
     year: int
+    hash: int
 
 func `$`*(res: Result): string =
   let s = if res.times == 1: "" else: "s"
@@ -27,7 +28,8 @@ func toJson(res: Result): JsonNode =
     "totalDuration": res.totalDuration.inNanoseconds(),
     "times": res.times,
     "ms": res.ms,
-    "year": res.year
+    "year": res.year,
+    "hash": res.hash
   }
 
 func toResult(node: JsonNode): Result =
@@ -37,12 +39,13 @@ func toResult(node: JsonNode): Result =
     times = node["times"].getInt()
     ms = node["ms"].getFloat()
     year = node["year"].getInt()
+    hash = node["hash"].getInt()
 
-  return Result(name: name, totalDuration: totalDuration, times: times, ms: ms, year: year)
+  return Result(name: name, totalDuration: totalDuration, times: times, ms: ms, year: year, hash: hash)
 
 const resultsFilename = "results.json"
 
-proc measure*(part: proc(input: string): int|string, input, name: string, year: int): Result =
+proc measure*(part: proc(input: string): int|string, input, name: string, year, hash: int): Result =
   var
     totalDuration: Duration
     times = 0
@@ -65,13 +68,13 @@ proc measure*(part: proc(input: string): int|string, input, name: string, year: 
     milliseconds = nanoseconds.float / 1000000.0
     ms = milliseconds / times.float
 
-  result = Result(name: name, totalDuration: totalDuration, times: times, ms: ms)
+  result = Result(name: name, totalDuration: totalDuration, times: times, ms: ms, year: year, hash: hash)
 
 
 macro importSolutions() =
   var
     allModuleNames: seq[string]
-    moduleNamesByYear: Table[string, seq[string]]
+    moduleNamesByYear: Table[string, seq[tuple[name: string, hash: int]]]
 
   result = newStmtList()
 
@@ -85,12 +88,11 @@ macro importSolutions() =
       nameString = &"solution{year}{day}"
       name = ident(nameString)
 
-    allModuleNames.add(nameString)
-
     if year notin moduleNamesByYear:
       moduleNamesByYear[year] = @[]
 
-    moduleNamesByYear[year].add(nameString)
+    moduleNamesByYear[year].add((nameString, hash(staticRead(file))))
+    allModuleNames.add(nameString)
 
     result.add quote do:
       import `file` as `name`
@@ -104,9 +106,9 @@ macro importSolutions() =
     let `jsonDataIdent` = parseJson(readFile(resultsFilename))
     var `resultsIdent`: Table[string, seq[Result]]
 
-  for year, moduleNames in moduleNamesByYear:
-    for moduleName in moduleNames:
-      let moduleIdent = ident(moduleName)
+  for (year, modules) in moduleNamesByYear.pairs:
+    for module in modules:
+      let moduleIdent = ident(module.name)
 
       mainProcContent.add quote do:
         let
@@ -114,11 +116,19 @@ macro importSolutions() =
           names = @[dayName & " part 1", dayName & " part 2"]
 
         for name in names:
+          let inJson = `jsonDataIdent`.contains(name)
+
+          var hasNewHash = false
+          if inJson:
+            hasNewHash = `jsonDataIdent`[name]{"hash"}.getInt(0) != `module`.hash
+
+          var shouldRun = forceRunAll or (not inJson) or hasNewHash
+
           var res: Result
-          if forceRunAll or not `jsonDataIdent`.contains(name):
+          if shouldRun:
             let input = fetchInput(`moduleIdent`.date)
 
-            res = measure(`moduleIdent`.part1, input, name, parseInt(`year`))
+            res = measure(`moduleIdent`.part1, input, name, parseInt(`year`), `module`.hash)
 
             `jsonDataIdent`{name} = res.toJson()
           else:
@@ -135,7 +145,7 @@ macro importSolutions() =
       `mainProcContent`
 
       for year in `resultsIdent`.keys:
-        echo "Performance for ", year, " by date and part"
+        echo "\nPerformance for ", year, " by date and part"
         for result in `resultsIdent`[year].sortedByIt(it.name):
           echo result
 
@@ -143,7 +153,7 @@ macro importSolutions() =
         for result in `resultsIdent`[year].sortedByIt(it.ms):
           echo result
 
-        echo "\n"
+        echo ""
 
       writeFile(resultsFilename, pretty(`jsonDataIdent`))
 

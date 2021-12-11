@@ -1,100 +1,114 @@
 {
   "2015_20 part 1": {
     "name": "2015_20 part 1",
-    "totalDuration": 10084782743,
+    "totalDuration": 10022143681,
     "times": 41,
-    "ms": 245.970310804878,
-    "year": 0
+    "ms": 244.442528804878,
+    "year": 2015,
+    "hash": -3324243034051478861
   },
   "2015_20 part 2": {
     "name": "2015_20 part 2",
-    "totalDuration": 10228063194,
-    "times": 42,
-    "ms": 243.5253141428572,
-    "year": 0
+    "totalDuration": 10067844519,
+    "times": 41,
+    "ms": 245.5571833902439,
+    "year": 2015,
+    "hash": -3324243034051478861
   },
   "2015_01 part 1": {
     "name": "2015_01 part 1",
-    "totalDuration": 24892,
+    "totalDuration": 24932,
     "times": 1000,
-    "ms": 2.4892e-05,
-    "year": 0
+    "ms": 2.4932e-05,
+    "year": 2015,
+    "hash": -1226317205529088040
   },
   "2015_01 part 2": {
     "name": "2015_01 part 2",
-    "totalDuration": 24860,
+    "totalDuration": 24883,
     "times": 1000,
-    "ms": 2.486e-05,
-    "year": 0
+    "ms": 2.4883e-05,
+    "year": 2015,
+    "hash": -1226317205529088040
   },
   "2021_08 part 1": {
     "name": "2021_08 part 1",
-    "totalDuration": 634286160,
+    "totalDuration": 642906742,
     "times": 1000,
-    "ms": 0.63428616,
-    "year": 0
+    "ms": 0.642906742,
+    "year": 2021,
+    "hash": 4899271999327165015
   },
   "2021_08 part 2": {
     "name": "2021_08 part 2",
-    "totalDuration": 633561388,
+    "totalDuration": 623506368,
     "times": 1000,
-    "ms": 0.6335613879999999,
-    "year": 0
-  },
-  "2021_09 part 1": {
-    "name": "2021_09 part 1",
-    "totalDuration": 1582596019,
-    "times": 1000,
-    "ms": 1.582596019,
-    "year": 0
-  },
-  "2021_09 part 2": {
-    "name": "2021_09 part 2",
-    "totalDuration": 1588913642,
-    "times": 1000,
-    "ms": 1.588913642,
-    "year": 0
-  },
-  "2021_01 part 1": {
-    "name": "2021_01 part 1",
-    "totalDuration": 1140345907,
-    "times": 1000,
-    "ms": 1.140345907,
-    "year": 0
-  },
-  "2021_01 part 2": {
-    "name": "2021_01 part 2",
-    "totalDuration": 1137060283,
-    "times": 1000,
-    "ms": 1.137060283,
-    "year": 0
-  },
-  "2021_10 part 1": {
-    "name": "2021_10 part 1",
-    "totalDuration": 151286858,
-    "times": 1000,
-    "ms": 0.151286858,
-    "year": 0
-  },
-  "2021_10 part 2": {
-    "name": "2021_10 part 2",
-    "totalDuration": 172878622,
-    "times": 1000,
-    "ms": 0.172878622,
-    "year": 0
+    "ms": 0.6235063679999999,
+    "year": 2021,
+    "hash": 4899271999327165015
   },
   "2021_11 part 1": {
     "name": "2021_11 part 1",
-    "totalDuration": 893686202,
+    "totalDuration": 895398826,
     "times": 1000,
-    "ms": 0.8936862019999999,
-    "year": 0
+    "ms": 0.895398826,
+    "year": 2021,
+    "hash": 7720181116577778772
   },
   "2021_11 part 2": {
     "name": "2021_11 part 2",
-    "totalDuration": 895189397,
+    "totalDuration": 894148448,
     "times": 1000,
-    "ms": 0.895189397,
-    "year": 0
+    "ms": 0.894148448,
+    "year": 2021,
+    "hash": 7720181116577778772
+  },
+  "2021_09 part 1": {
+    "name": "2021_09 part 1",
+    "totalDuration": 1565235766,
+    "times": 1000,
+    "ms": 1.565235766,
+    "year": 2021,
+    "hash": -1774004246251971528
+  },
+  "2021_09 part 2": {
+    "name": "2021_09 part 2",
+    "totalDuration": 1556885510,
+    "times": 1000,
+    "ms": 1.55688551,
+    "year": 2021,
+    "hash": -1774004246251971528
+  },
+  "2021_01 part 1": {
+    "name": "2021_01 part 1",
+    "totalDuration": 1132516437,
+    "times": 1000,
+    "ms": 1.132516437,
+    "year": 2021,
+    "hash": 1948473108269070939
+  },
+  "2021_01 part 2": {
+    "name": "2021_01 part 2",
+    "totalDuration": 1147255543,
+    "times": 1000,
+    "ms": 1.147255543,
+    "year": 2021,
+    "hash": 1948473108269070939
+  },
+  "2021_10 part 1": {
+    "name": "2021_10 part 1",
+    "totalDuration": 151105478,
+    "times": 1000,
+    "ms": 0.151105478,
+    "year": 2021,
+    "hash": -220127017229805611
+  },
+  "2021_10 part 2": {
+    "name": "2021_10 part 2",
+    "totalDuration": 151464239,
+    "times": 1000,
+    "ms": 0.151464239,
+    "year": 2021,
+    "hash": -220127017229805611
   }
 }

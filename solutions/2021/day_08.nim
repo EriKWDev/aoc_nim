@@ -7,9 +7,10 @@ type
     value2: seq[string]
 
 
-proc getData(input: string): auto =
+proc getData(input: string): seq[Data] =
   var lines = input.split("\n")
   result = newSeq[Data]()
+
   for line in lines:
     var
       values = line.split("|")[0..1]
@@ -21,6 +22,7 @@ proc getData(input: string): auto =
       secondList = second.strip().split(" ")
 
     result.add((firstList, secondList))
+
 
 const segments = [
   6, # 0
@@ -38,23 +40,19 @@ const segments = [
 const interestingIndexes = [1, 4, 7, 8]
 
 
-proc part1*(input: string): auto =
+proc part1*(input: string): int =
   let data = getData(input)
-
-  var score = 0
 
   for dataPoint in data:
     for value in dataPoint.value2:
       for interestingIndex in interestingIndexes:
         if len(value) == segments[interestingIndex]:
-          inc score
-
-  return score
+          inc result
 
 
 import algorithm
 
-proc part2*(input: string): auto =
+proc part2*(input: string): int =
   let data = getData(input)
 
   const letters = "abcdefg"
@@ -69,8 +67,6 @@ proc part2*(input: string): auto =
   var characters: seq[char]
   for character in letters:
     characters.add(character)
-
-  var score = 0
 
   for dataPoint in data:
     for permutation in permutations(characters):
@@ -106,9 +102,7 @@ proc part2*(input: string): auto =
         var output = ""
         for value in newValue2:
           output &= $correctTable[value]
-        score += parseInt(output)
-
-  return score
+        result += parseInt(output)
 
 
 const date* = (2021, 8)

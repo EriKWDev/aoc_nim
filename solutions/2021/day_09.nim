@@ -4,16 +4,12 @@ import aoc
 type Map = Table[tuple[x, y: int], int]
 
 proc getData(input: string): Map =
-  let
-    lines = input.split("\n")
+  let lines = input.split("\n")
 
-  var map: Map
   for y, line in lines:
     for x, character in line:
       let value = parseInt($character)
-      map[(x, y)] = value
-
-  return map
+      result[(x, y)] = value
 
 
 proc isLowPoint(map: Map, pos: tuple[x, y: int]): bool =
@@ -35,8 +31,6 @@ proc isLowPoint(map: Map, pos: tuple[x, y: int]): bool =
 
 proc part1*(input: string): int =
   let map = getData(input)
-
-  result = 0
 
   for pos in map.keys:
     if map.isLowPoint(pos):

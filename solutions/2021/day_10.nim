@@ -1,8 +1,8 @@
 import aoc
 
 
-proc getData(input: string): auto =
-  return input.split("\n")
+func getData(input: string): seq[string] = input.split("\n")
+
 
 const lookUp = {
   '(': ')',
@@ -14,7 +14,7 @@ const lookUp = {
 const keys = lookUp.keys.toSeq().toHashSet()
 
 
-proc part1*(input: string): auto =
+proc part1*(input: string): int =
   let data = getData(input)
 
   const scores = {
@@ -43,11 +43,8 @@ proc part1*(input: string): auto =
         if current notin keys or (current in keys and lookUp[current] != character):
           inc counts[character]
 
-  var score = 0
   for key in counts.keys:
-    score += counts[key] * scores[key]
-
-  return score
+    result += counts[key] * scores[key]
 
 
 proc part2*(input: string): int =
