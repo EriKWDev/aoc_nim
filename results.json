@@ -1,0 +1,100 @@
+{
+  "2015_20 part 1": {
+    "name": "2015_20 part 1",
+    "totalDuration": 10084782743,
+    "times": 41,
+    "ms": 245.970310804878,
+    "year": 0
+  },
+  "2015_20 part 2": {
+    "name": "2015_20 part 2",
+    "totalDuration": 10228063194,
+    "times": 42,
+    "ms": 243.5253141428572,
+    "year": 0
+  },
+  "2015_01 part 1": {
+    "name": "2015_01 part 1",
+    "totalDuration": 24892,
+    "times": 1000,
+    "ms": 2.4892e-05,
+    "year": 0
+  },
+  "2015_01 part 2": {
+    "name": "2015_01 part 2",
+    "totalDuration": 24860,
+    "times": 1000,
+    "ms": 2.486e-05,
+    "year": 0
+  },
+  "2021_08 part 1": {
+    "name": "2021_08 part 1",
+    "totalDuration": 634286160,
+    "times": 1000,
+    "ms": 0.63428616,
+    "year": 0
+  },
+  "2021_08 part 2": {
+    "name": "2021_08 part 2",
+    "totalDuration": 633561388,
+    "times": 1000,
+    "ms": 0.6335613879999999,
+    "year": 0
+  },
+  "2021_09 part 1": {
+    "name": "2021_09 part 1",
+    "totalDuration": 1582596019,
+    "times": 1000,
+    "ms": 1.582596019,
+    "year": 0
+  },
+  "2021_09 part 2": {
+    "name": "2021_09 part 2",
+    "totalDuration": 1588913642,
+    "times": 1000,
+    "ms": 1.588913642,
+    "year": 0
+  },
+  "2021_01 part 1": {
+    "name": "2021_01 part 1",
+    "totalDuration": 1140345907,
+    "times": 1000,
+    "ms": 1.140345907,
+    "year": 0
+  },
+  "2021_01 part 2": {
+    "name": "2021_01 part 2",
+    "totalDuration": 1137060283,
+    "times": 1000,
+    "ms": 1.137060283,
+    "year": 0
+  },
+  "2021_10 part 1": {
+    "name": "2021_10 part 1",
+    "totalDuration": 151286858,
+    "times": 1000,
+    "ms": 0.151286858,
+    "year": 0
+  },
+  "2021_10 part 2": {
+    "name": "2021_10 part 2",
+    "totalDuration": 172878622,
+    "times": 1000,
+    "ms": 0.172878622,
+    "year": 0
+  },
+  "2021_11 part 1": {
+    "name": "2021_11 part 1",
+    "totalDuration": 893686202,
+    "times": 1000,
+    "ms": 0.8936862019999999,
+    "year": 0
+  },
+  "2021_11 part 2": {
+    "name": "2021_11 part 2",
+    "totalDuration": 895189397,
+    "times": 1000,
+    "ms": 0.895189397,
+    "year": 0
+  }
+}
