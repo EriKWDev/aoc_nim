@@ -1,113 +1,113 @@
 {
   "2015_20 part 1": {
     "name": "2015_20 part 1",
-    "totalDuration": 10022143681,
+    "totalDuration": 10050517828,
     "times": 41,
-    "ms": 244.442528804878,
+    "ms": 245.1345811707317,
     "year": 2015,
     "hash": -3324243034051478861
   },
   "2015_20 part 2": {
     "name": "2015_20 part 2",
-    "totalDuration": 10067844519,
-    "times": 41,
-    "ms": 245.5571833902439,
+    "totalDuration": 10001932037,
+    "times": 40,
+    "ms": 250.048300925,
     "year": 2015,
     "hash": -3324243034051478861
   },
   "2015_01 part 1": {
     "name": "2015_01 part 1",
-    "totalDuration": 24932,
+    "totalDuration": 24872,
     "times": 1000,
-    "ms": 2.4932e-05,
+    "ms": 2.4872e-05,
     "year": 2015,
     "hash": -1226317205529088040
   },
   "2015_01 part 2": {
     "name": "2015_01 part 2",
-    "totalDuration": 24883,
+    "totalDuration": 24902,
     "times": 1000,
-    "ms": 2.4883e-05,
+    "ms": 2.4902e-05,
     "year": 2015,
     "hash": -1226317205529088040
   },
   "2021_08 part 1": {
     "name": "2021_08 part 1",
-    "totalDuration": 642906742,
+    "totalDuration": 648968004,
     "times": 1000,
-    "ms": 0.642906742,
+    "ms": 0.648968004,
     "year": 2021,
     "hash": 4899271999327165015
   },
   "2021_08 part 2": {
     "name": "2021_08 part 2",
-    "totalDuration": 623506368,
+    "totalDuration": 642338821,
     "times": 1000,
-    "ms": 0.6235063679999999,
+    "ms": 0.6423388210000001,
     "year": 2021,
     "hash": 4899271999327165015
   },
   "2021_11 part 1": {
     "name": "2021_11 part 1",
-    "totalDuration": 895398826,
+    "totalDuration": 891432675,
     "times": 1000,
-    "ms": 0.895398826,
+    "ms": 0.891432675,
     "year": 2021,
     "hash": 7720181116577778772
   },
   "2021_11 part 2": {
     "name": "2021_11 part 2",
-    "totalDuration": 894148448,
+    "totalDuration": 892905618,
     "times": 1000,
-    "ms": 0.894148448,
+    "ms": 0.892905618,
     "year": 2021,
     "hash": 7720181116577778772
   },
   "2021_09 part 1": {
     "name": "2021_09 part 1",
-    "totalDuration": 1565235766,
+    "totalDuration": 1542565486,
     "times": 1000,
-    "ms": 1.565235766,
+    "ms": 1.542565486,
     "year": 2021,
     "hash": -1774004246251971528
   },
   "2021_09 part 2": {
     "name": "2021_09 part 2",
-    "totalDuration": 1556885510,
+    "totalDuration": 1549655048,
     "times": 1000,
-    "ms": 1.55688551,
+    "ms": 1.549655048,
     "year": 2021,
     "hash": -1774004246251971528
   },
   "2021_01 part 1": {
     "name": "2021_01 part 1",
-    "totalDuration": 1132516437,
+    "totalDuration": 1131243838,
     "times": 1000,
-    "ms": 1.132516437,
+    "ms": 1.131243838,
     "year": 2021,
     "hash": 1948473108269070939
   },
   "2021_01 part 2": {
     "name": "2021_01 part 2",
-    "totalDuration": 1147255543,
+    "totalDuration": 1186743360,
     "times": 1000,
-    "ms": 1.147255543,
+    "ms": 1.18674336,
     "year": 2021,
     "hash": 1948473108269070939
   },
   "2021_10 part 1": {
     "name": "2021_10 part 1",
-    "totalDuration": 151105478,
+    "totalDuration": 153691341,
     "times": 1000,
-    "ms": 0.151105478,
+    "ms": 0.153691341,
     "year": 2021,
     "hash": -220127017229805611
   },
   "2021_10 part 2": {
     "name": "2021_10 part 2",
-    "totalDuration": 151464239,
+    "totalDuration": 152902218,
     "times": 1000,
-    "ms": 0.151464239,
+    "ms": 0.152902218,
     "year": 2021,
     "hash": -220127017229805611
   }

@@ -5,7 +5,6 @@ const
   n = 1000
   maxDuration = initDuration(seconds = 10)
   solutionsFolder = "solutions"
-  forceRunAll = false
 
 type
   Result* = object
@@ -121,6 +120,10 @@ macro importSolutions() =
           var hasNewHash = false
           if inJson:
             hasNewHash = `jsonDataIdent`[name]{"hash"}.getInt(0) != `module`.hash
+
+          var forceRunAll = false
+          when defined(all):
+            forceRunAll = true
 
           var shouldRun = forceRunAll or (not inJson) or hasNewHash
 
