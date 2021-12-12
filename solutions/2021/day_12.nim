@@ -37,7 +37,7 @@ proc numberOfPaths(map: Map, current: string, visited: var HashSet[string]): int
     if current in visited:
       return 0
 
-  visited.incl(current)
+    visited.incl(current)
 
   for destination in map[current]:
     var newVisited: HashSet[string]

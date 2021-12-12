@@ -204,7 +204,7 @@ proc runExamples*(date: Date, solver: proc(input: string): int|string,
     succeeded = 0
     skipped = 0
 
-  for example in examples:
+  for example in examples.sortedByIt(it.name):
     isExample = true
     let answer = $solver(example.input)
     isExample = false
