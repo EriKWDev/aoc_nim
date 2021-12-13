@@ -45,12 +45,12 @@ func fold(points: HashSet[Point], fold: Point): HashSet[Point] =
 
 
 func part1*(input: string): int =
-  var (map, folds) = getData(input)
+  var (points, folds) = getData(input)
 
   for fold in [folds[0]]:
-    map = map.fold(fold)
+    points = points.fold(fold)
 
-  return len(map)
+  return len(points)
 
 
 func plot*(points: openarray[Point]): string =
@@ -61,10 +61,10 @@ func plot*(points: openarray[Point]): string =
 
 
 func part2*(input: string): string =
-  var (map, folds) = getData(input)
+  var (points, folds) = getData(input)
 
   for fold in folds:
-    map = map.fold(fold)
+    points = points.fold(fold)
 
   # echo map.toSeq().plot()
   return "FGKCKBZG"

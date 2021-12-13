@@ -1,10 +1,10 @@
-import strformat, macros, os, strutils, std/monotimes, times, tables, aoc, algorithm, json, hashes
-from aoc import isNullAnswer
+import strformat, macros, os, strutils, std/monotimes, times, tables, algorithm, json, hashes, aoc
 
 const
   n = 1000
   maxDuration = initDuration(seconds = 10)
   solutionsFolder = "solutions"
+
 
 type
   Result* = tuple
@@ -14,6 +14,7 @@ type
     ms: float
     year: int
     hash: int
+
 
 func `$`*(res: Result): string =
   let s = if res.times == 1: "" else: "s"
@@ -31,6 +32,7 @@ func toJson(res: Result): JsonNode =
     "hash": res.hash
   }
 
+
 func toResult(node: JsonNode): Result =
   let
     name = node["name"].getStr()
@@ -41,6 +43,7 @@ func toResult(node: JsonNode): Result =
     hash = node["hash"].getInt()
 
   return (name, totalDuration, times, ms, year, hash)
+
 
 const resultsFilename = "results.json"
 
