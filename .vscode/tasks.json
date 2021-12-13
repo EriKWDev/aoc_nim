@@ -9,7 +9,6 @@
                 "-g",
                 "--verbosity:0",
                 "--hints:off",
-                "-d:debug",
                 "--debugger:native",
                 "-o:${workspaceRoot}/bin/${fileBasenameNoExtension}",
                 "${relativeFile}"

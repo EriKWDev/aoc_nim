@@ -1,5 +1,5 @@
 import strformat, macros, os, strutils, std/monotimes, times, tables, aoc, algorithm, json, hashes
-
+from aoc import isNullAnswer
 
 const
   n = 1000
@@ -7,7 +7,7 @@ const
   solutionsFolder = "solutions"
 
 type
-  Result* = object
+  Result* = tuple
     name: string
     totalDuration: Duration
     times: int
@@ -18,7 +18,7 @@ type
 func `$`*(res: Result): string =
   let s = if res.times == 1: "" else: "s"
 
-  return &"{res.name:.<30}{res.ms:.3f} ms (Ran {res.times} time{s})"
+  return &"{res.name:.<35}{res.ms:.3f} ms (Ran {res.times} time{s})"
 
 
 func toJson(res: Result): JsonNode =
@@ -40,7 +40,7 @@ func toResult(node: JsonNode): Result =
     year = node["year"].getInt()
     hash = node["hash"].getInt()
 
-  return Result(name: name, totalDuration: totalDuration, times: times, ms: ms, year: year, hash: hash)
+  return (name, totalDuration, times, ms, year, hash)
 
 const resultsFilename = "results.json"
 
@@ -53,9 +53,12 @@ proc measure*(part: proc(input: string): int|string, input, name: string, year, 
 
   for i in 1 .. n:
     let startTime = getMonoTime()
-    discard part(input)
+    let res = part(input)
     let endTime = getMonoTime()
     inc times
+
+    if i == 1 and isNullAnswer(res):
+      return (name & " (skipped)", initDuration(seconds = 0), 0, 0.0, year, hash)
 
     totalDuration += endTime - startTime
 
@@ -67,7 +70,7 @@ proc measure*(part: proc(input: string): int|string, input, name: string, year, 
     milliseconds = nanoseconds.float / 1000000.0
     ms = milliseconds / times.float
 
-  result = Result(name: name, totalDuration: totalDuration, times: times, ms: ms, year: year, hash: hash)
+  result = (name, totalDuration, times, ms, year, hash)
 
 
 macro importSolutions() =

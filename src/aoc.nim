@@ -70,7 +70,7 @@ proc fetchCachedInput(date: Date): string =
   return readFile(inputFilename)
 
 proc fetchInputFromAOC(date: Date): string =
-  echo "INFO: Fetching input..."
+  echo &"INFO: Fetching input for {date.year}, {date.day:2}..."
 
   let
     session = getSession()
@@ -152,7 +152,11 @@ proc submit1*(date: Date, answer: int|string) =
 proc submit2*(date: Date, answer: int|string) =
   submit(date, answer, 2)
 
-proc isNullAnswer(line: string): bool = line == "" or line == "null" or line == "nil" or line == "none"
+proc isNullAnswer*(answer: string|int): bool =
+  when answer is int:
+    if answer == 0: return false
+  else:
+    return answer == "" or answer == "null" or answer == "nil" or answer == "none"
 
 proc getExamples(date: Date): seq[Example] =
   let examplesFolder = ensureExamplesFolderExists(date)
@@ -197,8 +201,7 @@ proc runExamples*(date: Date, solver: proc(input: string): int|string,
   echo &"\n=== Examples {date.year} {date.day:02}, Part {part} ==="
 
   let examples = getExamples(date)
-
-  result = len(examples) > 0
+  result = true
 
   var
     succeeded = 0
@@ -212,8 +215,8 @@ proc runExamples*(date: Date, solver: proc(input: string): int|string,
     let correctAnswer = if part == 1: example.part1Answer else: example.part2Answer
 
     if isNullAnswer(answer):
-      echo &"{example.name} part {part}: ERROR: Received null answer"
-      result = false
+      echo &"{example.name} part {part}: SKIP: Received null answer"
+      inc skipped
       continue
 
     if isNullAnswer(correctAnswer):
