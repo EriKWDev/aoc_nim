@@ -7,7 +7,7 @@ type
     value2: int
 
 
-proc getData(input: string): auto =
+func getData(input: string): auto =
   return input.split("\n")
   # return input.split("\n\n")
   # return input.split(",")
