@@ -15,8 +15,20 @@ proc getData(input: string): Map =
       result[(x, y)] = value
 
 
+proc plot*(map: Map) =
+  var value: string
+
+  let points = map.keys.toSeq()
+  for y in min(points.mapIt(it.y)) .. max(points.mapIt(it.y)):
+    value &= "\n"
+    for x in min(points.mapIt(it.x)) .. max(points.mapIt(it.x)):
+      value &= $map[(x, y)]
+
+  echo value
+
+
 func estimate(map: Map, start: Point, goal: Point): int {.inline.} =
-  return abs(start.x - goal.x) + abs(goal.y - start.y)
+  return (sqrt(((start.x * goal.x) + (goal.y * start.y)).float) * 10).int
 
 
 func reconstructPath(cameFrom: Table[Point, Point], finish: Point): seq[Point] =
@@ -30,7 +42,7 @@ func reconstructPath(cameFrom: Table[Point, Point], finish: Point): seq[Point] =
   return reversed(result)
 
 
-func solve(map: Map, start: Point, goal: Point): seq[Point] =
+proc solve(map: Map, start: Point, goal: Point): seq[Point] =
   var
     openPoints: HashSet[Point]
     cameFrom: Table[Point, Point]
@@ -83,19 +95,7 @@ func getGoal(map: Map): Point =
       result = key
 
 
-proc plot*(map: Map) =
-  var value: string
-
-  let points = map.keys.toSeq()
-  for y in min(points.mapIt(it.y)) .. max(points.mapIt(it.y)):
-    value &= "\n"
-    for x in min(points.mapIt(it.x)) .. max(points.mapIt(it.x)):
-      value &= $map[(x, y)]
-
-  echo value
-
-
-func part1*(input: string): int =
+proc part1*(input: string): int =
   let
     map: Map = getData(input)
     start: Point = (0, 0)
@@ -128,8 +128,6 @@ proc part2*(input: string): auto =
     map = initialMap.repeat(5)
     start: Point = (0, 0)
     goal = map.getGoal()
-
-  # map.plot()
 
   let solution = map.solve(start, goal)
   return solution.mapIt(map[it]).toSeq().sum() - map[start]
