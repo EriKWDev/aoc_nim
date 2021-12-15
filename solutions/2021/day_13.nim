@@ -53,11 +53,13 @@ func part1*(input: string): int =
   return len(points)
 
 
-func plot*(points: openarray[Point]): string =
-  for y in points.mapIt(it.y).min .. points.mapIt(it.y).max:
-    result &= "\n"
-    for x in points.mapIt(it.x).min .. points.mapIt(it.x).max:
-      result &= (if (x, y) in points: "#" else: " ")
+proc plot*(points: HashSet[Point]) =
+  for y in min(points.mapIt(it.y)) .. max(points.mapIt(it.y)):
+    var line = ""
+    for x in min(points.mapIt(it.x)) .. max(points.mapIt(it.x)):
+      line &= (if (x, y) in points: "#" else: " ")
+
+    echo line
 
 
 func part2*(input: string): string =
@@ -66,7 +68,7 @@ func part2*(input: string): string =
   for fold in folds:
     points = points.fold(fold)
 
-  # echo map.toSeq().plot()
+  # points.plot()
   return "FGKCKBZG"
 
 
