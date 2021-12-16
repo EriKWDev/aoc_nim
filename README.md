@@ -51,6 +51,8 @@ Performance for 2021 by date and part
 2021_14 part 2.....................76.578 ms (Ran 132 times)
 2021_15 part 1.....................35.917 ms (Ran 279 times)
 2021_15 part 2.....................34.498 ms (Ran 290 times)
+2021_16 part 1.....................3.234 ms (Ran 1000 times)
+2021_16 part 2.....................3.209 ms (Ran 1000 times)
 
 Performance for 2021 by speed
 2021_10 part 2.....................0.153 ms (Ran 1000 times)
@@ -65,6 +67,8 @@ Performance for 2021 by speed
 2021_01 part 2.....................1.187 ms (Ran 1000 times)
 2021_09 part 1.....................1.543 ms (Ran 1000 times)
 2021_09 part 2.....................1.550 ms (Ran 1000 times)
+2021_16 part 2.....................3.209 ms (Ran 1000 times)
+2021_16 part 1.....................3.234 ms (Ran 1000 times)
 2021_15 part 2.....................34.498 ms (Ran 290 times)
 2021_15 part 1.....................35.917 ms (Ran 279 times)
 2021_12 part 1.....................61.746 ms (Ran 162 times)
