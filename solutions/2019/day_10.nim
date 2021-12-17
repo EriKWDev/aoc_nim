@@ -20,6 +20,7 @@ func getData(input: string): Field =
       if character == '#':
         result.asteroids.incl((x, y))
 
+
 func checkIfInFiled(point: Point, width, height: int): bool =
   return 0 <= point.x and point.x < width and 0 <= point.y and point.y < height
 
