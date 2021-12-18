@@ -16,6 +16,7 @@ type
 
 var isExample* = false
 
+
 proc getSession(): string =
   var session = getEnv("AOC_SESSION")
 
@@ -27,7 +28,9 @@ proc getSession(): string =
 
   return session
 
+
 func dateToName*(date: Date): string = &"{date.year}_{date.day:02}"
+
 
 proc ensureYearFolderExists(date: Date): string =
   let inputFolder = "input"
@@ -38,6 +41,7 @@ proc ensureYearFolderExists(date: Date): string =
 
   return yearFolder
 
+
 proc ensureExamplesFolderExists(date: Date): string =
   let
     yearFolder = ensureYearFolderExists(date)
@@ -47,6 +51,7 @@ proc ensureExamplesFolderExists(date: Date): string =
 
   return dayFolder
 
+
 proc ensureAutoFolderExists(date: Date): string =
   let
     yearFolder = ensureYearFolderExists(date)
@@ -55,6 +60,7 @@ proc ensureAutoFolderExists(date: Date): string =
   discard existsOrCreateDir(autoFolder)
 
   return autoFolder
+
 
 proc fetchCachedInput(date: Date): string =
   let autoFolder = ensureAutoFolderExists(date)
@@ -68,6 +74,7 @@ proc fetchCachedInput(date: Date): string =
     return ""
 
   return readFile(inputFilename)
+
 
 proc fetchInputFromAOC(date: Date): string =
   echo &"INFO: Fetching input for {date.year}, {date.day:2}..."
@@ -88,6 +95,7 @@ proc fetchInputFromAOC(date: Date): string =
   result = res.body.strip()
   echo result
 
+
 proc writeInputToCache(date: Date, content: string) =
   let autoFolder = ensureAutoFolderExists(date)
 
@@ -96,6 +104,7 @@ proc writeInputToCache(date: Date, content: string) =
 
   let inputFilename = joinPath(autoFolder, &"{dateToName(date)}_{!$sessionHash}.txt")
   writeFile(inputFilename, content)
+
 
 proc fetchInput*(date: Date): string =
   discard ensureExamplesFolderExists(date) # So that we can read and paste examples while input is fetching...
@@ -106,6 +115,7 @@ proc fetchInput*(date: Date): string =
 
   result = fetchInputFromAOC(date)
   writeInputToCache(date, result)
+
 
 proc submit*(date: Date, answer: int|string, part: int) =
   if $answer == "":
@@ -146,17 +156,21 @@ proc submit*(date: Date, answer: int|string, part: int) =
 
   echo &"> {message}\n"
 
+
 proc submit1*(date: Date, answer: int|string) =
   submit(date, answer, 1)
 
+
 proc submit2*(date: Date, answer: int|string) =
   submit(date, answer, 2)
+
 
 proc isNullAnswer*(answer: string|int): bool =
   when answer is int:
     if answer == 0: return false
   else:
     return answer == "" or answer == "null" or answer == "nil" or answer == "none"
+
 
 proc getExamples(date: Date): seq[Example] =
   let examplesFolder = ensureExamplesFolderExists(date)
@@ -195,6 +209,7 @@ proc getExamples(date: Date): seq[Example] =
     writeFile(filename, "null\nnull\n\n")
     filename = getFilename(i)
     inc i
+
 
 proc runExamples*(date: Date, solver: proc(input: string): int|string,
     part: int): bool {.discardable.} =
@@ -235,11 +250,14 @@ proc runExamples*(date: Date, solver: proc(input: string): int|string,
   echo &"\nSucceeded: {succeeded}/{len(examples) - skipped} (Skipped: {skipped})"
   echo "================================"
 
+
 proc runExamples1*(date: Date, solver: proc(input: string): int|string): bool {.discardable.} =
   return runExamples(date, solver, 1)
 
+
 proc runExamples2*(date: Date, solver: proc(input: string): int|string): bool {.discardable.} =
   return runExamples(date, solver, 2)
+
 
 proc printAnswer*(answer: int|string) =
   echo &"\nAnswer: {answer}\n"

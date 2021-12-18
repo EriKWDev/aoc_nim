@@ -5,8 +5,9 @@ type Data = tuple[x1, x2, y1, y2: int]
 
 
 func getData(input: string): Data =
-  let numbersPattern = re"(?m)(-?\d+)"
-  let numbers = input.findAll(numbersPattern).mapIt(parseInt(it.group(0, input)[0]))
+  let
+    numbersPattern = re"(?m)(-?\d+)"
+    numbers = input.findAll(numbersPattern).mapIt(parseInt(it.group(0, input)[0]))
   return (numbers[0], numbers[1], numbers[2], numbers[3])
 
 
