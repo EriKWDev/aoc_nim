@@ -153,14 +153,16 @@ macro importSolutions() =
     proc main() =
       `mainProcContent`
 
-      for year in `resultsIdent`.keys:
+      let years = `resultsIdent`.keys.toSeq().sorted()
+
+      for year in years:
         echo "\nPerformance for ", year, " by date and part"
         for result in `resultsIdent`[year].sortedByIt(it.name):
           echo result
 
-        echo "\nPerformance for ", year, " by speed"
-        for result in `resultsIdent`[year].sortedByIt(it.ms):
-          echo result
+        # echo "\nPerformance for ", year, " by speed"
+        # for result in `resultsIdent`[year].sortedByIt(it.ms):
+        #   echo result
 
         echo ""
 
