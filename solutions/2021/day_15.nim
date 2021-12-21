@@ -6,7 +6,7 @@ type
   Map = Table[Point, int]
 
 
-proc getData(input: string): Map =
+func getData(input: string): Map =
   let lines = input.split("\n")
 
   for y, line in lines:
@@ -42,7 +42,7 @@ func reconstructPath(cameFrom: Table[Point, Point], finish: Point): seq[Point] =
   return reversed(result)
 
 
-proc solve(map: Map, start: Point, goal: Point): seq[Point] =
+func solve(map: Map, start: Point, goal: Point): seq[Point] =
   var
     openPoints: HashSet[Point]
     cameFrom: Table[Point, Point]
@@ -95,7 +95,7 @@ func getGoal(map: Map): Point =
       result = key
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let
     map: Map = getData(input)
     start: Point = (0, 0)
@@ -122,7 +122,7 @@ func repeat(map: Map, n: int): Map =
       result[point] = result[point] mod 9 + 1
 
 
-proc part2*(input: string): auto =
+func part2*(input: string): auto =
   let
     initialMap: Map = getData(input)
     map = initialMap.repeat(5)

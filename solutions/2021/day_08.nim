@@ -7,7 +7,7 @@ type
     value2: seq[string]
 
 
-proc getData(input: string): seq[Data] =
+func getData(input: string): seq[Data] =
   var lines = input.split("\n")
   result = newSeq[Data]()
 
@@ -40,7 +40,7 @@ const segments = [
 const interestingIndexes = [1, 4, 7, 8]
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let data = getData(input)
 
   for dataPoint in data:
@@ -52,7 +52,7 @@ proc part1*(input: string): int =
 
 import algorithm
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let data = getData(input)
 
   const letters = "abcdefg"

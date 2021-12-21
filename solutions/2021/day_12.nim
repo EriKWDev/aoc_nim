@@ -4,7 +4,7 @@ import aoc
 type Map = Table[string, HashSet[string]]
 
 
-proc getData(input: string): Map =
+func getData(input: string): Map =
   for line in input.split("\n"):
     let sides = line.split("-")
 
@@ -22,14 +22,14 @@ proc getData(input: string): Map =
     result[value].incl(key)
 
 
-proc isLowerCase(word: string): bool =
+func isLowerCase(word: string): bool =
   result = true
   for character in word:
     if character.isUpperAscii():
       return false
 
 
-proc numberOfPaths(map: Map, current: string, visited: var HashSet[string]): int =
+func numberOfPaths(map: Map, current: string, visited: var HashSet[string]): int =
   if current == "end":
     return 1
 
@@ -45,7 +45,7 @@ proc numberOfPaths(map: Map, current: string, visited: var HashSet[string]): int
     result += numberOfPaths(map, destination, newVisited)
 
 
-proc numberOfPaths2(map: Map, current: string, visited: var Table[string, int]): int =
+func numberOfPaths2(map: Map, current: string, visited: var Table[string, int]): int =
   if current == "end":
     # echo visited
     return 1
@@ -80,14 +80,14 @@ proc numberOfPaths2(map: Map, current: string, visited: var Table[string, int]):
     result += numberOfPaths2(map, destination, newVisited)
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let map = getData(input)
 
   var visited: HashSet[string]
   return numberOfPaths(map, "start", visited)
 
 
-proc part2*(input: string): auto =
+func part2*(input: string): auto =
   let map = getData(input)
   var visited: Table[string, int]
   return numberOfPaths2(map, "start", visited)

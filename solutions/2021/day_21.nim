@@ -38,7 +38,7 @@ func part1*(input: string): int =
 
 type Cache = Table[(int, int, int, int, int), Data]
 
-proc diracDiceGameImpl(positions: Data, player: int, scores: Data, cache: var Cache): Data =
+func diracDiceGameImpl(positions: Data, player: int, scores: Data, cache: var Cache): Data =
   if scores[0] >= 21: return [1, 0] elif scores[1] >= 21: return [0, 1]
 
   let key = (positions[0], positions[1], player, scores[0], scores[1])
@@ -66,19 +66,17 @@ proc diracDiceGameImpl(positions: Data, player: int, scores: Data, cache: var Ca
   cache[key] = result
 
 
-proc diracDiceGame(positions: Data, player: int, scores: Data): Data =
+func diracDiceGame(positions: Data, player: int, scores: Data): Data =
   var cache: Cache
   return diracDiceGameImpl(positions, player, scores, cache)
 
 
-proc part2*(input: string): auto =
+func part2*(input: string): auto =
   let
     positions = getData(input)
     player = 0
     scores = [0, 0]
     game = diracDiceGame(positions, player, scores)
-
-  echo game
 
   return max(game)
 

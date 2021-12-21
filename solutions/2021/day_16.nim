@@ -29,11 +29,8 @@ func getData(input: string): seq[int] =
 
 
 func readBits(data: var seq[int], n: int): string =
-  # let shouldDebug = len(data) <= maxPacketSize
-  # if shouldDebug: debugEcho align(data.join(""), maxPacketSize)
   result = data[0 ..< n].join("")
   data = data[n .. ^1]
-  # if shouldDebug: debugEcho align(result.join(""), maxPacketSize - len(data))
 
 
 func read(data: var seq[int], n: int): int =
@@ -121,7 +118,7 @@ func part1*(input: string): int =
   return countVersion(mainPacket)
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let
     data = getData(input)
     mainPacket = parsePacket(data)

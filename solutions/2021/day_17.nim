@@ -14,10 +14,8 @@ func getData(input: string): Data =
 func simulate(area: Data, initialVX, initialVY: int): tuple[reachedArea: bool, highestY: int] =
   var
     isInFrontOfArea = true
-    x = 0
-    y = 0
-    vx = initialVX
-    vy = initialVY
+    (x, y) = (0, 0)
+    (vx, vy) = (initialVX, initialVY)
     (lx, hx, ly, hy) = area
 
   while isInFrontOfArea:
@@ -41,7 +39,7 @@ func simulate(area: Data, initialVX, initialVY: int): tuple[reachedArea: bool, h
       y >= ly
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let area = getData(input)
 
   for x in 0 .. 100:
@@ -52,7 +50,7 @@ proc part1*(input: string): int =
         result = max(result, highestY)
 
 
-proc part2*(input: string): auto =
+func part2*(input: string): auto =
   let area = getData(input)
   var distinctVelocities: HashSet[(int, int)]
 

@@ -30,9 +30,7 @@ func `$`(sfnumber: SFNumber): string =
 
 const nonNumbers = {'[', ',', ']'}
 
-func parseSFNumerImpl(line: string, i: var int): SFNumber =
-  let word = line.splitWhitespace().join("")
-
+func parseSFNumerImpl(word: string, i: var int): SFNumber =
   if word[i] == '[':
     inc i
     let left = parseSFNumerImpl(word, i)
@@ -51,8 +49,9 @@ func parseSFNumerImpl(line: string, i: var int): SFNumber =
 
 
 func parseSFNumber(word: string): SFNumber =
+  let cleanedWord = word.splitWhitespace().join("")
   var i = 0
-  return parseSFNumerImpl(word, i)
+  return parseSFNumerImpl(cleanedWord, i)
 
 
 func getData(input: string): seq[SFNumber] = input.split("\n").mapIt(parseSFNumber(it))
@@ -134,7 +133,7 @@ func magnitude(sfnumber: SFNumber): int =
   return 3 * magnitude(sfnumber.left) + 2 * magnitude(sfnumber.right)
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let sfnumbers = getData(input)
 
   var resultingSFNumber = sfnumbers[0]
@@ -144,7 +143,7 @@ proc part1*(input: string): int =
   return magnitude(resultingSFNumber)
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let sfnumbers = getData(input)
 
   for i, a in sfnumbers:

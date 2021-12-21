@@ -51,12 +51,12 @@ func solve(map: Map, algorithm: string, n: int): int =
         inc result
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let (map, algorithm) = getData(input)
   return solve(map, algorithm, 2)
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let (map, algorithm) = getData(input)
   return solve(map, algorithm, 50)
 

@@ -1,12 +1,12 @@
 import aoc
 
 
-proc getData(input: string): seq[int] =
+func getData(input: string): seq[int] =
   let numbersPattern = re"(?m)(-?\d+)"
   return input.findAll(numbersPattern).mapIt(parseInt(it.group(0, input)[0]))
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let numbers = getData(input)
 
   var previous = -1
@@ -17,7 +17,7 @@ proc part1*(input: string): int =
     previous = number
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let numbers = getData(input)
 
   var previous = -1

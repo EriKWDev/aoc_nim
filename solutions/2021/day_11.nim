@@ -1,8 +1,9 @@
 import aoc
 
+
 type Map = Table[tuple[x, y: int], int]
 
-proc getData(input: string): Map =
+func getData(input: string): Map =
   let
     lines = input.split("\n")
 
@@ -12,7 +13,7 @@ proc getData(input: string): Map =
       result[(x, y)] = value
 
 
-proc flash(map: var Map, location: tuple[x, y: int], flashed: var HashSet[tuple[x, y: int]]): int =
+func flash(map: var Map, location: tuple[x, y: int], flashed: var HashSet[tuple[x, y: int]]): int =
   if location notin map:
     return 0
 
@@ -36,7 +37,7 @@ proc flash(map: var Map, location: tuple[x, y: int], flashed: var HashSet[tuple[
         result += flash(map, newLocation, flashed)
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   var map = getData(input)
   result = 0
 
@@ -50,7 +51,7 @@ proc part1*(input: string): int =
         result += flash(map, location, flashed)
 
 
-proc part2*(input: string): auto =
+func part2*(input: string): auto =
   const maxLevel = 1000
 
   var map = getData(input)

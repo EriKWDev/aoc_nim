@@ -3,7 +3,7 @@ import aoc
 
 type Map = Table[tuple[x, y: int], int]
 
-proc getData(input: string): Map =
+func getData(input: string): Map =
   let lines = input.split("\n")
 
   for y, line in lines:
@@ -12,7 +12,7 @@ proc getData(input: string): Map =
       result[(x, y)] = value
 
 
-proc isLowPoint(map: Map, pos: tuple[x, y: int]): bool =
+func isLowPoint(map: Map, pos: tuple[x, y: int]): bool =
   result = true
 
   let value = map[pos]
@@ -29,7 +29,7 @@ proc isLowPoint(map: Map, pos: tuple[x, y: int]): bool =
       break
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let map = getData(input)
 
   for pos in map.keys:
@@ -37,7 +37,7 @@ proc part1*(input: string): int =
       result += map[pos] + 1
 
 
-proc getBasinSize(map: Map, pos, prevpos: tuple[x, y: int], visitedPoints: var HashSet[tuple[x,
+func getBasinSize(map: Map, pos, prevpos: tuple[x, y: int], visitedPoints: var HashSet[tuple[x,
     y: int]]): int =
   let value = map[pos]
   if value == 9: return 0
@@ -56,7 +56,7 @@ proc getBasinSize(map: Map, pos, prevpos: tuple[x, y: int], visitedPoints: var H
       result += getBasinSize(map, newPos, pos, visitedPoints)
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let data = getData(input)
   var basins: seq[int]
 

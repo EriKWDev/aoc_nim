@@ -54,7 +54,7 @@ func applyInsertion2(pairCountMap: Table[string, int], insertionMap: Table[strin
         result[key] += pairCountMap[pair]
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let (word, insertionMap) = getData(input)
 
   var theWord = word
@@ -74,7 +74,7 @@ proc part1*(input: string): int =
   return sortedValues[^1] - sortedValues[0]
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let (word, insertionMap) = getData(input)
 
   var pairCountMap: Table[string, int]

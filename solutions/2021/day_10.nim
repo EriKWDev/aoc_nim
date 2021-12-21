@@ -14,7 +14,7 @@ const lookUp = {
 const keys = lookUp.keys.toSeq().toHashSet()
 
 
-proc part1*(input: string): int =
+func part1*(input: string): int =
   let data = getData(input)
 
   const scores = {
@@ -47,7 +47,7 @@ proc part1*(input: string): int =
     result += counts[key] * scores[key]
 
 
-proc part2*(input: string): int =
+func part2*(input: string): int =
   let data = getData(input)
 
   const scores = {
