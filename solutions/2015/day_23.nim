@@ -9,7 +9,7 @@ type
 
 
 proc getData(input: string): seq[Instruction] =
-  for line in input.split("\n"):
+  for line in input.splitLines():
     let splitted = line.split(" ")
 
     if len(splitted) == 3:

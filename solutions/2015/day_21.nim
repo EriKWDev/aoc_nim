@@ -9,7 +9,7 @@ type
 
 
 func getData(input: string): Data =
-  let data = input.split("\n").mapIt(parseInt(it.split(": ")[1]))
+  let data = input.splitLines().mapIt(parseInt(it.split(": ")[1]))
 
   return (data[0], data[1], data[2])
 

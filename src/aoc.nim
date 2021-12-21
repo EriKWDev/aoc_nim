@@ -184,7 +184,7 @@ proc getExamples(date: Date): seq[Example] =
     if file.kind == pcFile:
       let
         content = readFile(file.path)
-        lines = content.split("\n")
+        lines = content.splitLines()
         name = file.path.splitFile().name
 
       if len(lines) == 0: continue

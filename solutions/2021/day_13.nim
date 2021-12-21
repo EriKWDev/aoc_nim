@@ -8,7 +8,7 @@ func getData(input: string): (HashSet[Point], seq[Point]) =
   let chunks = input.split("\n\n")
 
   var points: HashSet[Point]
-  for line in chunks[0].split("\n"):
+  for line in chunks[0].splitLines():
     let
       numbers = line.split(",").mapIt(parseInt(it))
       point: Point = (numbers[0], numbers[1])
@@ -16,7 +16,7 @@ func getData(input: string): (HashSet[Point], seq[Point]) =
     points.incl(point)
 
   var folds: seq[Point]
-  for line in chunks[1].split("\n"):
+  for line in chunks[1].splitLines():
     var
       splitted = line.split("=")
       point: Point = (0, 0)

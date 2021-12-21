@@ -4,8 +4,7 @@ import aoc
 type Map = Table[tuple[x, y: int], int]
 
 func getData(input: string): Map =
-  let
-    lines = input.split("\n")
+  let lines = input.splitLines()
 
   for y, line in lines:
     for x, character in line:

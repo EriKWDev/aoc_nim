@@ -9,7 +9,7 @@ type
 
 
 proc getData(input: string): Data =
-  let values = input.split("\n").mapIt(parseInt(it.split(": ")[1]))
+  let values = input.splitLines().mapIt(parseInt(it.split(": ")[1]))
   return (values[0], values[1], 0)
 
 

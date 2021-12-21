@@ -11,7 +11,7 @@ func getData(input: string): Data =
   let chunks = input.split("\n\n")
   result.algorithm = chunks[0].strip().replace("\n", "").replace(".", "0").replace("#", "1")
 
-  let lines = chunks[1].strip().split("\n")
+  let lines = chunks[1].strip().splitLines()
   for y, line in lines:
     for x, character in line:
       let point: Point = (x, y)

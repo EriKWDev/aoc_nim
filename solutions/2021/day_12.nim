@@ -5,7 +5,7 @@ type Map = Table[string, HashSet[string]]
 
 
 func getData(input: string): Map =
-  for line in input.split("\n"):
+  for line in input.splitLines():
     let sides = line.split("-")
 
     let

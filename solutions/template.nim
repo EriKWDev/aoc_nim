@@ -8,10 +8,10 @@ type
 
 
 func getData(input: string): auto =
-  return input.split("\n")
+  return input.splitLines()
   # return input.split("\n\n")
   # return input.split(",")
-  # return input.split("")
+  # return input.toSeq()
 
   #[
   let numbersPattern = re"(?m)(-?\d+)"

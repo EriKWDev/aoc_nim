@@ -54,7 +54,7 @@ func parseSFNumber(word: string): SFNumber =
   return parseSFNumerImpl(cleanedWord, i)
 
 
-func getData(input: string): seq[SFNumber] = input.split("\n").mapIt(parseSFNumber(it))
+func getData(input: string): seq[SFNumber] = input.splitLines().map(parseSFNumber)
 
 
 func trySplitImpl(sfnumber: SFNumber, done: var bool) =

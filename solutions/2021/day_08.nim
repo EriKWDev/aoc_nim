@@ -8,8 +8,7 @@ type
 
 
 func getData(input: string): seq[Data] =
-  var lines = input.split("\n")
-  result = newSeq[Data]()
+  var lines = input.splitLines()
 
   for line in lines:
     var

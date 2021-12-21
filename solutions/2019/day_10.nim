@@ -10,7 +10,7 @@ type
 
 
 func getData(input: string): Field =
-  let lines = input.split("\n")
+  let lines = input.splitLines()
 
   result.height = len(lines)
   result.width = len(lines[0])

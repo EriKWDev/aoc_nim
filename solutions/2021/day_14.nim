@@ -8,7 +8,7 @@ func getData(input: string): (string, Table[string, string]) =
 
   var insertionMap: Table[string, string]
 
-  for line in chunks[1].split("\n"):
+  for line in chunks[1].splitLines():
     let splitted = line.split(" -> ")
     insertionMap[splitted[0].strip()] = splitted[1].strip()
 

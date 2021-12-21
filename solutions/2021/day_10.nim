@@ -1,7 +1,7 @@
 import aoc
 
 
-func getData(input: string): seq[string] = input.split("\n")
+func getData(input: string): seq[string] = input.splitLines()
 
 
 const lookUp = {
