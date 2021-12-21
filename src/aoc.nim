@@ -1,7 +1,6 @@
 
-import strformat, regex, sequtils, strutils, tables, sets, intsets, htmlparser, xmltree, httpclient,
-    os, json, math, hashes, algorithm, deques
-export strformat, regex, sequtils, strutils, tables, sets, intsets, math, algorithm, deques
+import strformat, regex, sequtils, strutils, tables, sets, intsets, htmlparser, xmltree, httpclient, os, json, math, hashes, algorithm, deques, strscans
+export strformat, regex, sequtils, strutils, tables, sets, intsets, math, algorithm, deques, strscans
 
 type
   Date* = tuple
