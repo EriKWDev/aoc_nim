@@ -31,6 +31,10 @@ Performance for 2018 by date and part
 2018_03 part 2.....................44.217 ms (Ran 227 times)
 2018_04 part 1.....................3.352 ms (Ran 1000 times)
 2018_04 part 2.....................3.346 ms (Ran 1000 times)
+2018_05 part 1.....................4.813 ms (Ran 1000 times)
+2018_05 part 2.....................4.955 ms (Ran 1000 times)
+2018_06 part 1.....................10.269 ms (Ran 974 times)
+2018_06 part 2.....................10.325 ms (Ran 969 times)
 
 
 Performance for 2019 by date and part

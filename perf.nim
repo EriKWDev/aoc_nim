@@ -85,6 +85,7 @@ macro importSolutions() =
 
   for file in os.walkDirRec(solutionsFolder):
     if file.contains("template"): continue
+    if not file.contains(".nim"): continue
 
     let
       dirNameExt = file.splitFile()
