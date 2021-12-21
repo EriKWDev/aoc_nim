@@ -87,7 +87,7 @@ proc main*() =
   if not runExamples2(date, part2): return
   let answer2 = part2(input)
   printAnswer(answer2)
-  submit2(date, answer2)
+  # submit2(date, answer2)
 
 
 when isMainModule:
