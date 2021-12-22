@@ -1,12 +1,6 @@
 import aoc
 
 
-type
-  Data = tuple
-    value1: string
-    value2: int
-
-
 func getData(input: string): seq[int] =
   return input.splitLines().map(parseInt)
 

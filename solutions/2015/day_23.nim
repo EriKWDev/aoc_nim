@@ -20,6 +20,7 @@ proc getData(input: string): seq[Instruction] =
       else:
         result &= (splitted[0], splitted[1], 0)
 
+
 func execute(instructions: seq[Instruction], register: var Table[string, int], index: int = 0) =
   if index < 0 or index > high(instructions):
     return

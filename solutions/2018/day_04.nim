@@ -4,19 +4,8 @@ import aoc
 type Entry = tuple[_: bool, year, month, day, hour, minute: int, rest: string]
 
 
-func `$`(entry: Entry): string =
-  let (_, year, month, day, hour, minute, rest) = entry
-  result = &"[{year}-{month:02}-{day:02} {hour:02}:{minute:02}] {rest}"
-
-
 func getData(input: string): seq[Entry] =
   input.splitLines().mapIt(it.scanTuple("[$i-$i-$i $i:$i] $+")).sortedByIt((it[1], it[2], it[3], it[4], it[5]))
-
-
-
-func toMinutes(entry: Entry): int =
-  let (_, year, month, day, hour, minute, _) = entry
-  return year * 525600 + month * 43800 + day * 1440 + hour * 60 + minute
 
 
 func calculateSchedule(entries: seq[Entry]): Table[int, array[0..59, int]] =

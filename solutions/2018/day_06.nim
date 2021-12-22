@@ -1,8 +1,8 @@
 import aoc
 
 
-
 const size = 400
+
 type
   Map = array[0 .. size, array[0 .. size, int]]
   Point = tuple[x, y: int]
