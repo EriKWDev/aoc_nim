@@ -24,44 +24,13 @@ func getData(input: string): Data =
 
       result.map[point] = character
       if character in ampiphodTypes:
+        # If an amiphod is already in its final position,
+        # don't include it in the amiphodPoints that must move
         if y == lines.high - 1 and x == targetX[character]:
           result.map[point] = character
           continue
 
         result.ampiphodPoints.incl(point)
-
-
-func `$`(data: Data): string =
-  let
-    points = data.map.keys.toSeq()
-    minX = min(points.mapIt(it.x))
-    maxX = max(points.mapIt(it.x))
-    minY = min(points.mapIt(it.y))
-    maxY = max(points.mapIt(it.y))
-
-  result = "   "
-
-  for x in minX .. maxX:
-    result &= (&"{x:2}")[0]
-  result &= "\n   "
-
-  for x in minX .. maxX:
-    result &= (&"{x:2}")[1]
-  result &= "\n"
-
-  for y in minY .. maxY:
-    result &= &"\n{y:2} "
-    for x in minX .. maxX:
-      let point: Point = (x, y)
-      if point notin data.map:
-        result &= ' '
-        continue
-
-      result &= data.map[point]
-
-
-func `$`(move: Move): string =
-  &"({move.startPoint.x}, {move.startPoint.y}) -> ({move.endPoint.x}, {move.endPoint.y}) ({move.cost}, {move.settled})"
 
 
 func getMoves(data: Data, startPoint: Point): seq[Move] =
@@ -183,7 +152,6 @@ proc part2*(input: string): auto =
 
 
 const date* = (2021, 23)
-
 
 proc main*() =
   let input = fetchInput(date)
