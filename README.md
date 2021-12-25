@@ -1,5 +1,5 @@
 # About
-These are my solutions to *Advent of Code*, written in Nim. During 2021 I began solving in dart (See my repo `aoc_dart`), but switched to Nim because I missed the amazing tuples.
+These are my solutions to *Advent of Code*, written in Nim. During 2021 I began solving in dart (See my repo [`aoc_dart`](https://github.com/EriKWDev/aoc_dart)), but switched to Nim after day 7 because I missed tuples soo much.
 
 ## Performance
 Please see `perf.nim` for how measurements are taken. Briefly, I use a macro to import every solution at compile time and generate statements that call `measure` on each part for each solution. Parts are measured either until they've been run 1000 times or until the total time exceeds 10 seconds. Time it takes to fetch and/or read the input is not included in the measurement (The parsing of the input within the solution still is counted of course).
