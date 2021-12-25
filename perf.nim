@@ -121,7 +121,7 @@ macro importSolutions() =
           dayName = dateToName(`moduleIdent`.date)
           names = @[dayName & " part 1", dayName & " part 2"]
 
-        for name in names:
+        for i, name in names:
           let inJson = `jsonDataIdent`.contains(name)
 
           var hasNewHash = false
@@ -138,7 +138,10 @@ macro importSolutions() =
           if shouldRun:
             let input = fetchInput(`moduleIdent`.date)
 
-            res = measure(`moduleIdent`.part1, input, name, parseInt(`year`), `module`.hash)
+            if i == 0:
+              res = measure(`moduleIdent`.part1, input, name, parseInt(`year`), `module`.hash)
+            else:
+              res = measure(`moduleIdent`.part2, input, name, parseInt(`year`), `module`.hash)
 
             `jsonDataIdent`{name} = res.toJson()
           else:

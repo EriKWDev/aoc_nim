@@ -1,156 +1,122 @@
-import aoc, bigints
+import aoc
 
 
-type Instruction = (int, string, string, string)
+type Data = tuple[C1, C2, C3: seq[int]]
 
-func getData(input: string): seq[Instruction] =
+
+proc getData(input: string): Data =
+  result.C1 = newSeqOfCap[int](13)
+  result.C2 = newSeqOfCap[int](13)
+  result.C3 = newSeqOfCap[int](13)
+
   let lines = input.splitLines()
-  for line in lines:
-    let theSplit = line.split(" ")
-    if len(theSplit) == 2:
-      result &= (len(theSplit), theSplit[0], theSplit[1], "")
-    else:
-      result &= (len(theSplit), theSplit[0], theSplit[1], theSplit[2])
-
-
-func nextDown(values: array[0..13, int]): array[0..13, int] =
-  for i in 0 .. 13:
-    result[i] = values[i]
-
-  var i = 13
-  while true:
-    result[i] = (result[i] - 1)
-
-    if result[i] != 0:
-      break
-
-    result[i] = 9
-    dec i
-
-
-func nextUp(values: array[0..13, int]): array[0..13, int] =
-  for i in 0 .. 13:
-    result[i] = values[i]
-
-  var i = 13
-  while true:
-    result[i] = (result[i] + 1)
-
-    if result[i] < 9:
-      break
-
-    result[i] = 1
-    dec i
-
-const
-  zero = initBigInt(0)
-  one = initBigInt(1)
-  twentySix = initBigInt(26)
-  twentyFive = initBigInt(25)
-
-
-type
-  Key = (int, BigInt, BigInt)
-  Value = (BigInt, BigInt, BigInt, BigInt)
-  Cache = TableRef[Key, Value]
-
-
-proc runProgram(inputs: array[0..13, int], C1, C2, C3: seq[BigInt]): BigInt =
-  func addOp(a: var BigInt, b: BigInt) = a = a + b
-  func mulOp(a: var BigInt, b: BigInt) = a = a * b
-  func modOp(a: var BigInt, b: BigInt) = a = a mod b
-  func divOp(a: var BigInt, b: BigInt) = a = a div b
-  func eqlOp(a: var BigInt, b: BigInt) = a = if a == b: one else: zero
-
   var
-    w = zero
-    x = zero
-    y = zero
-    z = zero
+    i = 0
+    n = 0
 
-  proc once(i: int) =
-    let
-      c1 = C1[i]
-      c2 = C2[i]
-      c3 = C3[i]
+  while n <= high(lines):
+    let line = lines[n]
+    if line.contains("inp"):
+      result.C1.add lines[n + 4].split(" ")[2].parseInt()
+      result.C2.add lines[n + 5].split(" ")[2].parseInt()
+      result.C3.add lines[n + 15].split(" ")[2].parseInt()
 
-    w = initBigInt(inputs[i]) # inpOp w
-    mulOp x, zero
-    addOp x, z
-    modOp x, twentySix
-    divOp z, c1
-    addOp x, c2
-    eqlOp x, w
-    eqlOp x, zero
-    mulOp y, zero
-    addOp y, twentyFive
-    mulOp y, x
-    addOp y, one
-    mulOp z, y
-    mulOp y, zero
-    addOp y, w
-    addOp y, c3
-    mulOp y, x
-    addOp z, y
+      inc i
+      n += 18
 
-  for i in 0 .. 13:
-    once(i)
 
-  return z
+func addOp(a: var int, b: int) = a = a + b
+func mulOp(a: var int, b: int) = a = a * b
+func modOp(a: var int, b: int) = a = a mod b
+func divOp(a: var int, b: int) = a = a div b
+func eqlOp(a: var int, b: int) = a = if a == b: 1 else: 0
 
-import random
+
+proc runProgramOnce(input, previousZ, c1, c2, c3: int): int =
+  var
+    w = input
+    z = previousZ
+    x = 0
+    y = 0
+
+  # mulOp x, 0
+  addOp x, z
+  modOp x, 26
+  divOp z, c1
+  addOp x, c2
+  eqlOp x, w
+  eqlOp x, 0
+  # mulOp y, 0
+  addOp y, 25
+  mulOp y, x
+  addOp y, 1
+  mulOp z, y
+  mulOp y, 0
+  addOp y, w
+  addOp y, c3
+  mulOp y, x
+  addOp z, y
+
+  result = z
+
+
+const maxZValue = 10 ^ 8 # Arbitrary large number
 
 proc part1*(input: string): string =
-  # let data = getData(input)
+  let (C1, C2, C3) = getData(input)
 
-  let
-    theSplit = input.strip().split("inp w")[1 .. ^1]
-    C1 = theSplit.mapIt(it.splitLines()[04].scanTuple("div z $i")[1].initBigInt()).toSeq()
-    C2 = theSplit.mapIt(it.splitLines()[05].scanTuple("add $w $i")[2].initBigInt()).toSeq()
-    C3 = theSplit.mapIt(it.splitLines()[15].scanTuple("add $w $i")[2].initBigInt()).toSeq()
+  var results = {0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}.toOrderedTable()
+  for i in 0 ..< 14:
 
-  echo C1
-  echo C2
-  echo C3
+    let (c1, c2, c3) = (C1[i], C2[i], C3[i])
+    var newResults: OrderedTable[int, array[14, int]]
 
-  const r = 1..9
+    for previousZ, previousValue in results.pairs:
+      for input in 1 .. 9:
+        let newZ = runProgramOnce(input, previousZ, c1, c2, c3)
 
-  var
-    # current = [8,9,9,5,9,7,9,9,9,9,9,9,9,9]
-    current = [8,9,9,9,9,9,9,9,9,9,9,9,9,9]
-    # Two hours on my laptop got me to: [8, 9, 9, 9, 7, 9, 2, 6, 4, 5, 6, 7, 1, 4]
-    # 98999987787498
-    # 99999987787587
-    n = 0
-    biggest: array[0..13, int]
+        if newZ > maxZValue:
+          continue
 
-  while true:
-    inc n
+        var newValue = previousValue
+        newValue[i] = input
+        newResults[newZ] = newValue
 
-    let value = runProgram(current, C1, C2, C3)
+    results = newResults
 
-    if n mod 40000 == 0:
-      echo current, ": ", value
-      echo biggest.join("")
-      n = 0
+    # 87559244919519
+    # 89959794919939
+    # 87959131916919
+    # 89115794919139
+    # 87248792917219
+    # 89448242917439
 
-    if value == zero:
-      echo "YES"
-      if initBigInt(current.join("")) > initBigInt(biggest.join("")):
-        biggest = current
-
-      echo current.join("")
-      echo biggest.join("")
-
-    current = nextDown(current)
+  return results[0].join("")
 
 
-  return biggest.join("")
+proc part2*(input: string): string =
+  let (C1, C2, C3) = getData(input)
 
+  var results = {0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}.toOrderedTable()
+  for i in 0 ..< 14:
 
-proc part2*(input: string): auto =
-  let data = getData(input)
-  return ""
+    let (c1, c2, c3) = (C1[i], C2[i], C3[i])
+    var newResults: OrderedTable[int, array[14, int]]
+
+    for previousZ, previousValue in results.pairs:
+      for input in countdown(9, 1):
+        let newZ = runProgramOnce(input, previousZ, c1, c2, c3)
+
+        if newZ > maxZValue:
+          continue
+
+        var newValue = previousValue
+        newValue[i] = input
+        newResults[newZ] = newValue
+
+    results = newResults
+
+  return results[0].join("")
 
 
 const date* = (2021, 24)
