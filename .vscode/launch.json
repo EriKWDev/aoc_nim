@@ -10,7 +10,7 @@
             "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
+            "console": "internalConsole"
         }
     ]
 }

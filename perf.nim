@@ -1,5 +1,6 @@
 import strformat, macros, os, strutils, std/monotimes, times, tables, algorithm, json, hashes, aoc
 
+
 const
   n = 1000
   maxDuration = initDuration(seconds = 10)

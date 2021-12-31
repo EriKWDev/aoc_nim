@@ -37,6 +37,8 @@ Performance for 2018 by date and part
 2018_06 part 2.....................7.874 ms (Ran 1000 times)
 2018_07 part 1 (skipped)...........0.000 ms (Ran 0 times)
 2018_07 part 2 (skipped)...........0.000 ms (Ran 0 times)
+2018_08 part 1.....................0.973 ms (Ran 1000 times)
+2018_08 part 2.....................0.999 ms (Ran 1000 times)
 
 
 Performance for 2019 by date and part
@@ -81,6 +83,6 @@ Performance for 2021 by date and part
 2021_23 part 2.....................3383.569 ms (Ran 3 times)
 2021_24 part 1.....................256.463 ms (Ran 39 times)
 2021_24 part 2.....................254.046 ms (Ran 40 times)
-2021_25 part 1.....................1818.640 ms (Ran 6 times)
+2021_25 part 1.....................1823.042 ms (Ran 6 times)
 2021_25 part 2.....................0.000 ms (Ran 1000 times)
 ```
